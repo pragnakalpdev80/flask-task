@@ -1,0 +1,9 @@
+flask
+flask-sqlalchemy 
+flask-migrate 
+dotenv
+psycopg2-binary
+flask-marshmallow 
+marshmallow-sqlalchemy
+flask-bcrypt
+flask-jwt-extended

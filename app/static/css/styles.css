@@ -1,0 +1,50 @@
+*{
+    padding: 0.2vw 0.2vw;
+    margin: 0.1vw 0.1vw ;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.container {
+    width: 350px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+h2 {
+    text-align: center;
+}
+
+
+button {
+    width: 100%;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+.dashboard-container {
+    width: 400px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.joke-box {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #000;
+}

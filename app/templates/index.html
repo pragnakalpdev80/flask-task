@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <!-- <link rel="stylesheet" href="file:///C:/Internship/registration/app/static/css/styles.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <script>
+    function validateForm() {
+
+    let fname = document.forms["regForm"]["first_name"].value.trim();
+    let lname = document.forms["regForm"]["last_name"].value.trim();
+    let email = document.forms["regForm"]["email"].value.trim();
+    let password = document.forms["regForm"]["password"].value;
+    let confirm = document.forms["regForm"]["confirm_password"].value;
+    let address = document.forms["regForm"]["address"].value.trim();
+
+    let hobbies = document.querySelectorAll('input[name="hobbies"]:checked');
+    let gender = document.querySelector('input[name="gender"]:checked');
+    let terms = document.getElementById("terms").checked;
+
+    let emailRegex = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,3}$/;
+
+    if(fname === "" || lname === "" || email === "" || password === "" || confirm === "" || address === ""){
+        alert("All fields must be filled");
+        return false;
+    }
+
+    if(fname.length > 30 || lname.length > 30){
+        alert("First & Last name must be less than 30 characters");
+        return false;
+    }
+
+    if(!emailRegex.test(email)){
+        alert("Invalid Email Format");
+        return false;
+    }
+
+    if(password.length < 6 || password.length > 12){
+        alert("Password must be between 6 and 12 characters");
+        return false;
+    }
+
+    if(confirm.length < 6 || confirm.length > 12){
+        alert("Password must be between 6 and 12 characters");
+        return false;
+    }
+
+    if(password !== confirm){
+        alert("Passwords do not match");
+        return false;
+    }
+
+    if(address.split(" ").length <= 15){
+        alert("Address must contain more than 15 words");
+        return false;
+    }
+
+    if(hobbies.length === 0){
+        alert("Select at least one hobby");
+        return false;
+    }
+
+    if(!gender){
+        alert("Select gender");
+        return false;
+    }
+
+    if(!terms){
+        alert("Accept Terms & Services");
+        return false;
+    }
+
+    return true;
+}
+    </script><div class="container">
+    <h2>User Registration</h2>
+    <form name="register" method="POST" onsubmit="return validateForm()">
+    <label>First Name</label>
+    <input type="text" name="first_name" maxlength="30" required><br>
+    <label>Last Name</label>
+    <input type="text" name="last_name" maxlength="30" required><br>
+    <label>Email</label>
+    <input type="email" name="email" required><br>
+    <label>Password</label>
+    <input type="password" name="password" minlength="6" maxlength="12" required><br>
+    <label>Confirm Password</label>
+    <input type="password" name="confirm_password" minlength="6" maxlength="12" required><br>
+    <label>Address</label>
+    <textarea name="address" required></textarea><br>
+    <label>Hobbies</label>
+    <div>
+    <input type="checkbox" name="hobbies" value="Sports"> Sports
+    <input type="checkbox" name="hobbies" value="Music"> Music
+    <input type="checkbox" name="hobbies" value="Reading"> Reading
+    <input type="checkbox" name="hobbies" value="Others"> Others
+    </div>
+    <label>Gender</label>
+    <div class="inline">
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female
+    </div>
+    <div class="inline">
+    <input type="checkbox" id="terms" name="terms" required> Accept Terms & Services
+    </div>
+    <button type="submit">Register</button>
+    </form>
+    <a href="/login"><button>Already Registered? Login</button></a>
+</div>
+</body>
+</html>
