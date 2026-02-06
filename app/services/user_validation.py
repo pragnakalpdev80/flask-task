@@ -4,6 +4,7 @@ from flask_jwt_extended import create_access_token
 from app.models.user import User
 import re
 import os
+import csv
 import hashlib
 import smtplib
 import requests
@@ -33,7 +34,7 @@ def send_mail(data):
     receiver_email = data["email"]
     sender_email=os.getenv('GMAIL')
     subject = "User registered Successfully"
-    body = "Your account has been created.\nThank you for registration\n\n\nYour Username: "+data["email"]+"\nYour Password: "+ data["password"]+"\n\nUse this email and password to login"
+    body = "Your account has been created.\nThank you for registration\n\n\nUse your email and password to login"
     # Create the email
     message = MIMEText(body, "plain")
     message["Subject"] = subject
@@ -48,18 +49,29 @@ def send_mail(data):
 
     print("Email sent successfully!")
 
+def csv_convert(data):
+    path = 'app/user_hobby'
+    name = data["email"]+ '.csv'
+    csvFileName = os.path.join(path,name)
+
+    with open(csvFileName, 'w') as csv_file:
+        csvWriter = csv.writer(csv_file, delimiter = ',')
+        csvWriter.writerow(data["hobbies"])
+    file_path = os.path.join(csvFileName)
+    return file_path
+
 def insert_data(data):
     print(data)
     encrypted_pass=encrypt_password(data["password"])
-    hobby_string=",".join(data["hobbies"])
-    
+    # hobby_string=",".join(data["hobbies"])
+    hobby_csv=csv_convert(data)
     user= User(
         first_name = data["first_name"],
         last_name = data["last_name"],
         email = data["email"],
         password = encrypted_pass,
         address = data["address"],
-        hobbies = hobby_string,
+        hobbies = hobby_csv,
         gender = data["gender"]
     )
     db.session.add(user)
@@ -115,5 +127,4 @@ class UserValidation:
         token = create_access_token(identity=str(user.registration_id))
         return {"access_token": token}, None, 200
 
-if __name__=="__main__":
-    fetch_joke()
+# if __name__=="__main__":

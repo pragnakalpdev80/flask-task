@@ -16,10 +16,9 @@ body {
     border: 1px solid #ccc;
 }
 
-h2 {
+footer,h2 {
     text-align: center;
 }
-
 
 button {
     width: 100%;
@@ -35,7 +34,7 @@ button:hover {
 
 
 .dashboard-container {
-    width: 400px;
+    width: 50vw;
     margin: 50px auto;
     background-color: white;
     padding: 20px;

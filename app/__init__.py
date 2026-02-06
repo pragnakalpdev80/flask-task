@@ -69,8 +69,6 @@ def create_app():
     @jwt_required()
     def dashboard():
 
-        user_id = get_jwt_identity()
-        print(user_id)
         joke = fetch_joke()
         return render_template("dashboard.html",
                                joke=joke)
@@ -79,14 +77,10 @@ def create_app():
     @app.route("/logout")
     @jwt_required()
     def logout():
-
-        
         response = redirect("/")
         unset_jwt_cookies(response)
-
         return response
-
-
+    
     return app
 
 if __name__=="__main__":

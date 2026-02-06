@@ -78,19 +78,25 @@
 }
     </script><div class="container">
     <h2>User Registration</h2>
-    <form name="register" method="POST" onsubmit="return validateForm()">
-    <label>First Name</label>
+    <form name="register" method="POST" onsubmit="return validateForm()"><table>
+    <tr><td>
+    <label>First Name</label></td><td>
     <input type="text" name="first_name" maxlength="30" required><br>
-    <label>Last Name</label>
+    </td></tr><tr><td>
+    <label>Last Name</label></td><td>
     <input type="text" name="last_name" maxlength="30" required><br>
-    <label>Email</label>
+    </td></tr><tr><td>
+    <label>Email</label></td><td>
     <input type="email" name="email" required><br>
-    <label>Password</label>
+    </td></tr><tr><td>
+    <label>Password</label></td><td>
     <input type="password" name="password" minlength="6" maxlength="12" required><br>
-    <label>Confirm Password</label>
+    </td></tr><tr><td>
+    <label>Confirm Password</label></td><td>
     <input type="password" name="confirm_password" minlength="6" maxlength="12" required><br>
-    <label>Address</label>
-    <textarea name="address" required></textarea><br>
+    </td></tr><tr><td>
+    <label>Address</label></td><td>
+    <textarea name="address" required></textarea><br></tr></table>
     <label>Hobbies</label>
     <div>
     <input type="checkbox" name="hobbies" value="Sports"> Sports
